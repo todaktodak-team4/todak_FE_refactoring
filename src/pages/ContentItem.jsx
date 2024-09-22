@@ -40,7 +40,7 @@ const ContentItem = ({
       const fetchStatus = async () => {
         try {
           const response = await axios.get(
-            `http://3.38.125.151/memorialHall/${postId}/participate`,
+            `http://127.0.0.1:8000/memorialHall/${postId}/participate`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -82,7 +82,7 @@ const ContentItem = ({
       let newStatus;
       if (status === "participated") {
         await axios.post(
-          `http://3.38.125.151/memorialHall/${postId}/unparticipate`,
+          `http://127.0.0.1:8000/memorialHall/${postId}/unparticipate`,
           { status: "unparticipated" },
           {
             headers: {
@@ -94,7 +94,7 @@ const ContentItem = ({
         newStatus = "unparticipated";
       } else {
         await axios.post(
-          `http://3.38.125.151/memorialHall/${postId}/participate`,
+          `http://127.0.0.1:8000/memorialHall/${postId}/participate`,
           { status: "participated" },
           {
             headers: {
