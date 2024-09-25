@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import * as M from "../css/StyledMain"; // Adjusted import to ensure StyledMain contains necessary styled components and keyframes
+import * as M from "../css/StyledMain";
 import Nav from "./Nav";
 import Info from "./Info";
 import NeedLogin from "./NeedLogin";
@@ -10,17 +10,9 @@ const Main = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("access_token")); // localStorage에서 토큰 가져오기
   const [userId, setUserId] = useState(null); // 추가: 사용자 ID 상태
-  const [showLoginModal, setShowLoginModal] = useState(false); // 로그인 모달 창 보이기 여부 상태
-
   useEffect(() => {
-    // 5초 후에 Info 컴포넌트를 보이게 설정
-    const timeoutId = setTimeout(() => {
-      setShowInfo(true);
-    }, 100);
-
-    return () => {
-      clearTimeout(timeoutId); // 컴포넌트가 언마운트되면 타이머 제거
-    };
+    // 컴포넌트가 마운트되면 상단으로 스크롤
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
@@ -52,6 +44,8 @@ const Main = () => {
 
     validateToken();
   }, [token]);
+
+  const [showLoginModal, setShowLoginModal] = useState(false); // 로그인 모달 창 보이기 여부 상태
 
   const goToRemeberTree = async () => {
     if (token) {
@@ -123,6 +117,16 @@ const Main = () => {
     <M.Body>
       <M.Container>
         {showLoginModal && <NeedLogin />}
+        <img
+          id="sill1"
+          src={`${process.env.PUBLIC_URL}/img/sill1.png`}
+          alt="Gross"
+        />
+        <img
+          id="sill2"
+          src={`${process.env.PUBLIC_URL}/img/sill2.png`}
+          alt="Gross"
+        />
         <Nav />
         <M.Content>
           <M.NavBtns>
@@ -154,10 +158,13 @@ const Main = () => {
             alt="Gross"
           />
         </M.ImageGross>
-        <M.ScrollImage src="/img/scrollplz.png" alt="스크롤 유도" />
+        <img
+          id="Img"
+          src={`${process.env.PUBLIC_URL}/img/mainlanding.png`}
+          alt="Img"
+        />
       </M.Container>
-
-      {showInfo && <Info />}
+      <Info />
     </M.Body>
   );
 };

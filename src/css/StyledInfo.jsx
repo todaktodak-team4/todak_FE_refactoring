@@ -1,29 +1,90 @@
-import { styled, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-// Define the fade-in from bottom animation
-const fadeInUp = keyframes`
-  from {
+export const Info = styled.div``;
+
+// Keyframe animations
+const fadeInX = keyframes`
+  0% {
     opacity: 0;
-    transform: translateY(50px);
+    
   }
-  to {
+  100% {
+    opacity: 1;
+  }
+`;
+
+const fadeInY = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 `;
+const fadeInFromTop = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-20%); /* 위쪽에서 시작 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* 최종 위치 */
+  }
+`;
+const fadeInFromLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-20%); /* 왼쪽에서 시작 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* 최종 위치 */
+  }
+`;
+const fadeInFromRight = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(20%); /* 오른쪽에서 시작 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* 최종 위치 */
+  }
+`;
 
-const fadeIn = keyframes`
-  from {
+const drawFromLeft = keyframes`
+  0% {
+    clip-path: inset(0 100% 0 0); /* 처음에는 오른쪽이 보이지 않음 */
     opacity: 0;
   }
-  to {
+  100% {
+    clip-path: inset(0 0 0 0); /* 전체 이미지가 보이도록 */
+    opacity: 1;
+  }
+`;
+const drawFromRight = keyframes`
+  0% {
+    clip-path: inset(0 0 0 100%); /* 처음에는 오른쪽이 보이지 않음 */
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0); /* 전체 이미지가 보이도록 */
+    opacity: 1;
+  }
+`;
+const drawFromTop = keyframes`
+  0% {
+    clip-path: inset(100% 0 0 0); /* 처음에는 위쪽이 보이지 않음 */
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0); /* 전체 이미지가 보이도록 */
     opacity: 1;
   }
 `;
 
-export const Info = styled.div`
-  animation: ${fadeIn} 1.5s ease-in-out;
-`;
 export const Info1 = styled.div`
   text-align: center;
   display: flex;
@@ -31,7 +92,7 @@ export const Info1 = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 80vh;
+  height: 35rem;
   background: linear-gradient(
       180deg,
       rgba(153, 153, 153, 1) 0%,
@@ -40,30 +101,34 @@ export const Info1 = styled.div`
     url(${process.env.PUBLIC_URL}/img/Info1.png);
   background-size: cover;
   background-repeat: no-repeat;
+  > * {
+    animation: ${fadeInY} 3s ease-out;
+    animation-delay: 1.25s;
+  }
   img {
     width: 146px;
     height: 89px;
     flex-shrink: 0;
   }
-  p {
-    color: var(--ff, #fff);
+  #title {
+    color: #fff;
     text-align: center;
     font-family: "Pretendard Variable";
-    font-size: 26px;
+    font-size: 1.625rem;
     font-style: normal;
-    line-height: normal;
-    margin: 10px;
+    font-weight: 400;
+    line-height: 2.5rem;
   }
 `;
 export const BoldText = styled.p`
   display: inline-block;
-  color: var(--ff, #fff);
-  text-align: center;
+  color: #fff;
   font-family: "Pretendard Variable";
-  font-size: 26px;
+  font-size: 1.625rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin: 0;
 `;
 export const Info2 = styled.div`
   text-align: center;
@@ -72,45 +137,74 @@ export const Info2 = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 80vh;
+  height: 35rem;
   background: url(${process.env.PUBLIC_URL}/img/Background2.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center bottom;
+  position: relative; /* Ensure the position is relative for absolute positioning of children */
+  z-index: 0; /* Set z-index to 0 */
+  img {
+    z-index: 3;
+  }
+  #Info2Img1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #Info2Img2 {
+    position: absolute;
+    left: 7rem;
+    top: 0;
+    width: 10rem;
+    height: 10rem;
+  }
+  #Info2Img3 {
+    position: absolute;
+    right: 7rem;
+    top: 0;
+  }
+  #Info2Img4 {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
   #title {
-    color: var(---, #323232);
+    color: #323232;
     font-family: "Pretendard Variable";
-    font-size: 40px;
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
+    animation: ${fadeInX} 2s ease-out forwards;
   }
   #content1 {
-    color: var(---, #323232);
+    color: #323232;
     text-align: center;
     font-family: "Pretendard Variable";
-    font-size: 26px;
+    font-size: 1.625rem;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+    line-height: 2.5rem;
     margin: 5px;
     margin-bottom: 30px;
     margin-top: 15px;
+    animation: ${fadeInX} 2s ease-out forwards;
   }
   #content2 {
-    color: var(---, #323232);
+    color: #323232;
     text-align: center;
     font-family: "Pretendard Variable";
-    font-size: 26px;
+    font-size: 1.625rem;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
-    margin: 5px;
+    line-height: 2.5rem;
+    margin: 0;
   }
   #content3 {
-    color: var(---, #323232);
+    color: #323232;
     font-family: "Pretendard Variable";
-    font-size: 28px;
+    font-size: 1.75rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -119,14 +213,13 @@ export const Info2 = styled.div`
 `;
 export const BoldText2 = styled.p`
   display: inline-block;
-  color: var(---, #323232);
-  text-align: center;
+  color: #323232;
   font-family: "Pretendard Variable";
-  font-size: 26px;
+  font-size: 1.625rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: normal;
-  margin: 5px;
+  margin: 0;
 `;
 export const Info3 = styled.div`
   position: relative;
@@ -136,8 +229,10 @@ export const Info3 = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 70vh;
+  height: 30rem;
+  color: #323232;
   background: linear-gradient(270deg, #fff 0%, #ffda57 65%);
+
   #Info3Left {
     position: absolute;
     left: 0;
@@ -149,36 +244,44 @@ export const Info3 = styled.div`
     height: 100%;
   }
   #title {
-    color: var(--, #2b2b2b);
+    color: #323232;
     font-family: "Pretendard Variable";
-    font-size: 40px;
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
+
+    animation: ${fadeInY} 2s ease-out;
   }
   #content1 {
-    color: var(--, #2b2b2b);
+    color: #323232;
     font-family: "Pretendard Variable";
-    font-size: 26px;
+    font-size: 1.625rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin: 0;
+
+    animation: ${fadeInY} 2s ease-out;
   }
   #content2 {
-    color: var(--, #2b2b2b);
+    color: #323232;
     font-family: "Pretendard Variable";
-    font-size: 26px;
+    font-size: 1.625rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-top: 40px;
+    opacity: 0; /* 애니메이션 시작 전 투명도 0 */
+    animation: ${fadeInY} 2s ease-out;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
   }
 `;
 export const BoldText3 = styled.p`
   display: inline-block;
-  color: var(--, #2b2b2b);
+  color: #323232;
   font-family: "Pretendard Variable";
-  font-size: 26px;
+  font-size: 1.625rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -188,6 +291,40 @@ export const Info3Contents = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  /* Apply animation with different delays for each child */
+  > * {
+    animation: ${fadeInX} 2s ease-out forwards;
+    opacity: 0;
+  }
+
+  > *:nth-child(1) {
+    animation-delay: 0s;
+  }
+  > *:nth-child(2) {
+    animation-delay: 0.25s;
+  }
+  > *:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+  > *:nth-child(4) {
+    animation-delay: 0.75s;
+  }
+  > *:nth-child(5) {
+    animation-delay: 1s;
+  }
+  > *:nth-child(6) {
+    animation-delay: 1.25s;
+  }
+  > *:nth-child(7) {
+    animation-delay: 1.5s;
+  }
+  > *:nth-child(8) {
+    animation-delay: 1.75s;
+  }
+  > *:nth-child(9) {
+    animation-delay: 2s;
+  }
 `;
 export const Info3Content2Wrapp1 = styled.div`
   width: 152px;
@@ -259,9 +396,9 @@ export const Info3Arrow = styled.div`
   margin-left: 20px;
 `;
 export const Info3Content2 = styled.div`
-  color: var(--, #2b2b2b);
+  color: #323232;
   font-family: "Pretendard Variable";
-  font-size: 32px;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -274,7 +411,7 @@ export const Info4 = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 90vh;
+  height: 40rem;
   background: url(${process.env.PUBLIC_URL}/img/Info4Background.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -351,12 +488,14 @@ export const Info5 = styled.div`
   padding-left: 10vw;
   flex-direction: column;
   width: 100vw;
-  height: 70vh;
+  height: 30rem;
   background: #000;
+
   img {
     position: absolute;
     right: 10vw;
-    height: 70vh;
+    height: 30rem;
+    filter: brightness(70%);
   }
   #title {
     z-index: 2;
@@ -366,6 +505,7 @@ export const Info5 = styled.div`
     font-style: normal;
     font-weight: 800;
     line-height: normal;
+    animation: ${fadeInFromTop} 2s ease-out forwards;
   }
   #content {
     z-index: 2;
@@ -375,6 +515,7 @@ export const Info5 = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    animation: ${fadeInFromTop} 2s ease-out forwards;
   }
 `;
 export const BoldText4 = styled.p`
@@ -393,10 +534,14 @@ export const InfoAdd = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 70vh;
-  background: url(${process.env.PUBLIC_URL}/img/Info6Img.png);
-  background-size: cover;
+  height: 30rem;
+  background: url(${process.env.PUBLIC_URL}/img/InfoAdd.png);
+  background-size: 140%;
   background-repeat: no-repeat;
+  background-position: center; /* Centers the image in the container */
+  > * {
+    animation: ${fadeInFromTop} 2s ease-out forwards;
+  }
   #title {
     color: var(--ff, #fff);
     font-family: "Pretendard Variable";
@@ -423,7 +568,7 @@ export const Info6 = styled.div`
   flex-direction: row;
   gap: 10vw;
   width: 100vw;
-  height: 70vh;
+  height: 30rem;
   background: url(${process.env.PUBLIC_URL}/img/Info6Img.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -434,17 +579,14 @@ export const Info6Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 3rem;
-  div {
-    width: 32.5rem;
-    height: 3.5rem;
-    flex-shrink: 0;
-    border-radius: 4.375rem;
-    background: linear-gradient(0deg, #ebebeb 0%, #fff 48%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  #Info61 {
+    animation: ${fadeInFromLeft} 2.5s ease-out;
+    margin: 0;
   }
   #Info62 {
     margin-left: 10rem;
+    animation: ${fadeInFromRight} 2.5s ease-out;
   }
   p {
     color: #6f6f6f;
@@ -482,12 +624,12 @@ export const Info7 = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100vw;
-  height: 60vh;
+  height: 25rem;
   background: url(${process.env.PUBLIC_URL}/img/plantTree-bg.png);
   background-size: cover;
   background-repeat: no-repeat;
   padding-left: 10vw;
-  gap: 20vw;
+  gap: 10vw;
 `;
 export const Info7Content = styled.div`
   text-align: left;
@@ -514,10 +656,12 @@ export const Info7Content = styled.div`
   }
 `;
 export const Info7Img = styled.div`
-  div {
+  animation: ${drawFromTop} 2s ease-out;
+  animation-fill-mode: forwards;
+  clip-path: inset(100% 0 0 0);
+  margin-right: 15vw;
+  #imgdiv {
     position: relative;
-    right: 10vw;
-    bottom: 0;
     flex-shrink: 0;
     width: 482px;
     height: 431px;
@@ -550,6 +694,58 @@ export const Info7Img = styled.div`
     width: 50px;
     height: 50px;
   }
+
+  #q1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    left: 30px;
+    bottom: 290px;
+    width: 160px;
+    height: 35px;
+    border-radius: 35px;
+    background: linear-gradient(0deg, #ebebeb 0%, #fff 48%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  #q2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 30px;
+    width: 220px;
+    height: 35px;
+    border-radius: 35px;
+    background: linear-gradient(0deg, #ebebeb 0%, #fff 48%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  #q3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 200px;
+    width: 260px;
+    height: 35px;
+    border-radius: 35px;
+    background: linear-gradient(0deg, #ebebeb 0%, #fff 48%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  p {
+    color: #6f6f6f;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
 `;
 export const Info8 = styled.div`
   position: relative;
@@ -559,8 +755,10 @@ export const Info8 = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 80vh;
+  height: 40rem;
   background: linear-gradient(180deg, #c3e985 0%, #e7e985 100%);
+  overflow: hidden; /* Ensure animation does not overflow */
+
   #title {
     color: #3d4c00;
     font-family: "Pretendard Variable";
@@ -569,7 +767,10 @@ export const Info8 = styled.div`
     font-weight: 800;
     line-height: normal;
     margin: 0;
+    position: relative;
+    z-index: 1;
   }
+
   #content {
     color: #3d4c00;
     text-align: center;
@@ -578,13 +779,25 @@ export const Info8 = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    position: relative;
+    z-index: 1;
+  }
+
+  .animation-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; /* Ensure animation does not capture mouse events */
   }
 `;
 export const BoldText5 = styled.p`
   display: inline-block;
   color: #3d4c00;
   font-family: "Pretendard Variable";
-  font-size: 26px;
+  font-size: 1.625rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -619,13 +832,13 @@ export const Info9 = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 90vh;
+  height: 40rem;
   background: url(${process.env.PUBLIC_URL}/img/Info9Img.png);
   background-size: cover;
   background-repeat: no-repeat;
   img {
-    width: 9rem;
-    height: 9rem;
+    width: 5rem;
+    height: 6rem;
   }
   #title {
     color: #3d4c00;
@@ -644,6 +857,9 @@ export const Info9 = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 2.5rem;
+    animation: ${fadeInX} 1s ease-out forwards;
+    animation-delay: 1s;
+    opacity: 0;
   }
 `;
 export const Info923 = styled.div`
@@ -657,6 +873,8 @@ export const Info923 = styled.div`
   width: 60rem;
 `;
 export const Info92 = styled.div`
+  animation: ${drawFromLeft} 1s ease-out;
+  animation-fill-mode: forwards;
   position: absolute;
   top: 6rem;
   width: 46.9375rem;
@@ -664,6 +882,8 @@ export const Info92 = styled.div`
   flex-shrink: 0;
   background: linear-gradient(90deg, #ffda57 0%, #b59a3d 100%);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display: block; /* 블록 요소로 설정 */
+  clip-path: inset(0 100% 0 0); /* 처음에는 오른쪽이 보이지 않도록 설정 */
 `;
 export const Info93 = styled.div`
   z-index: 3;
@@ -683,6 +903,7 @@ export const NavBtnWrapper1 = styled.div`
   border-radius: 50%;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 //3-2 버튼 wrapping 안쪽
 export const NavBtnWrapper2 = styled.div`
@@ -692,7 +913,7 @@ export const NavBtnWrapper2 = styled.div`
   flex-shrink: 0;
   border-radius: 50%;
   background: #ffda57;
-
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   justify-content: center;
   align-items: center;
   p {
@@ -722,7 +943,7 @@ export const Info10 = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100vw;
-  height: 60vh;
+  height: 25rem;
   background: url(${process.env.PUBLIC_URL}/img/Info10Img.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -732,6 +953,19 @@ export const Info10Line1 = styled.div`
   width: 390px;
   height: 2px;
   background: #655004;
+  animation: ${drawFromRight} 2s ease-out;
+  animation-fill-mode: forwards;
+  display: block; /* 블록 요소로 설정 */
+  clip-path: inset(0 0 0 100%); /* 처음에는 오른쪽이 보이지 않도록 설정 */
+`;
+export const Info10Line2 = styled.div`
+  width: 390px;
+  height: 2px;
+  background: #655004;
+  animation: ${drawFromLeft} 2s ease-out;
+  animation-fill-mode: forwards;
+  display: block; /* 블록 요소로 설정 */
+  clip-path: inset(0 100% 0 0); /* 처음에는 오른쪽이 보이지 않도록 설정 */
 `;
 export const Info10Content = styled.div`
   text-align: center;

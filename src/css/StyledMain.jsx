@@ -1,34 +1,5 @@
-import styled, { keyframes } from "styled-components";
+import { styled } from "styled-components";
 
-// Define the fade-in from bottom animation
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const scrollAnimation = keyframes`
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-`;
-export const ScrollImage = styled.img`
-  animation: ${scrollAnimation} 2s infinite;
-`;
 export const Body = styled.div`
   overflow-x: hidden;
   overflow-y: hidden;
@@ -36,15 +7,25 @@ export const Body = styled.div`
 
 // 최상위 요소
 export const Container = styled.div`
-  animation: ${fadeIn} 1.5s ease-in-out;
   position: relative;
   width: 100vw;
   height: 100vh;
   margin: 0;
   background: linear-gradient(180deg, #ffda57 17.5%, #faffda 86%);
-  img {
-    -webkit-animation: sdb 2s infinite;
-    box-sizing: border-box;
+  #sill1 {
+    position: absolute;
+    right: 0;
+    width: 10vw;
+    height: 100vh;
+  }
+  #sill2 {
+    position: absolute;
+    left: 0;
+    width: 10vw;
+    height: 100vh;
+  }
+  #img {
+    z-index: 99;
   }
 `;
 
@@ -59,7 +40,7 @@ export const Content = styled.div`
 // 버튼들 모아서
 export const NavBtns = styled.div`
   cursor: pointer;
-  margin-top: 18vh;
+  margin-top: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,7 +93,7 @@ export const NavBtnWrapper2 = styled.div`
   }
 
   &:hover {
-    transform: scale(1.2); /* 120% 커짐 */
+    transform: scale(1.1); /* 120% 커짐 */
   }
 `;
 
