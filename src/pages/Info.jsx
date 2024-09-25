@@ -1,10 +1,79 @@
-import React from "react";
+// Info.js
+import React, { useState } from "react";
 import * as I from "../css/StyledInfo";
+import LottieAnimation from "./LottieAnimation";
+import LottieAnimation2 from "./LottieAnimation2";
+import LottieAnimation3 from "./LottieAnimation3";
+import useIntersectionObserver from "./useIntersectionObserver";
 
 const Info = () => {
+  // 각 섹션을 관찰하기 위한 훅 설정
+  const isVisible1 = useIntersectionObserver({
+    targetSelector: "#Info1",
+    threshold: 1,
+  });
+  const isVisible2 = useIntersectionObserver({
+    targetSelector: "#Info2",
+    threshold: 1,
+  });
+  const isVisible3 = useIntersectionObserver({
+    targetSelector: "#Info3",
+    threshold: 1,
+  });
+  const isVisible4 = useIntersectionObserver({
+    targetSelector: "#Info4",
+    threshold: 1,
+  });
+  const isVisible5 = useIntersectionObserver({
+    targetSelector: "#Info5",
+    threshold: 1,
+  });
+  const isVisible6 = useIntersectionObserver({
+    targetSelector: "#Info6",
+    threshold: 0.8,
+  });
+  const isVisible7 = useIntersectionObserver({
+    targetSelector: "#Info7",
+    threshold: 0.8,
+  });
+  const isVisible8 = useIntersectionObserver({
+    targetSelector: "#Info8",
+    threshold: 0.8,
+  });
+  const isVisible9 = useIntersectionObserver({
+    targetSelector: "#Info9",
+    threshold: 0.8,
+  });
+  const isVisible10 = useIntersectionObserver({
+    targetSelector: "#Info10",
+    threshold: 0.8,
+  });
+  const isVisible11 = useIntersectionObserver({
+    targetSelector: "#Info11",
+    threshold: 0.8,
+  });
+
+  // 각 섹션의 애니메이션 재생 상태를 관리하는 상태 변수
+  const [isPlaying1, setIsPlaying1] = useState(false);
+  const [isPlaying2, setIsPlaying2] = useState(false);
+  const [isPlaying3, setIsPlaying3] = useState(false);
+  const [isPlaying4, setIsPlaying4] = useState(false);
+  const [isPlaying5, setIsPlaying5] = useState(false);
+  const [isPlaying6, setIsPlaying6] = useState(false);
+  const [isPlaying7, setIsPlaying7] = useState(false);
+  const [isPlaying8, setIsPlaying8] = useState(false);
+  const [isPlaying9, setIsPlaying9] = useState(false);
+  const [isPlaying10, setIsPlaying10] = useState(false);
+  const [isPlaying11, setIsPlaying11] = useState(false);
+
   return (
     <I.Info>
-      <I.Info1>
+      <I.Info1
+        id="Info1"
+        className={isVisible1 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying1(true)}
+        onMouseLeave={() => setIsPlaying1(false)}
+      >
         <img
           id="Logo"
           src={`${process.env.PUBLIC_URL}/img/TodakLogo2.svg`}
@@ -15,8 +84,7 @@ const Info = () => {
           src={`${process.env.PUBLIC_URL}/img/LogoMessage.svg`}
           alt="LogoMessage"
         />
-
-        <p>
+        <p id="title">
           <I.BoldText>
             토닥토닥은 재난 경험자와 유족을 위한 공간입니다.
           </I.BoldText>
@@ -27,13 +95,44 @@ const Info = () => {
           서비스입니다.
         </p>
       </I.Info1>
-      <I.Info2>
+      <I.Info2
+        id="Info2"
+        className={isVisible2 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying2(true)}
+        onMouseLeave={() => setIsPlaying2(false)}
+      >
+        <LottieAnimation2
+          src="https://lottie.host/2a698210-56a2-4a65-a464-d01a762173a1/xvBlkfKYyz.json"
+          speed={2}
+          loop={false}
+          autoplay={true}
+        />
+        <img
+          id="Info2Img1"
+          src={`${process.env.PUBLIC_URL}/img/11left.svg`}
+          alt="Info2Img1"
+        />
+        <img
+          id="Info2Img2"
+          src={`${process.env.PUBLIC_URL}/img/11left2.svg`}
+          alt="Info2Img1"
+        />
+        <img
+          id="Info2Img3"
+          src={`${process.env.PUBLIC_URL}/img/112.svg`}
+          alt="Info2Img1"
+        />
+        <img
+          id="Info2Img4"
+          src={`${process.env.PUBLIC_URL}/img/11.svg`}
+          alt="Info2Img1"
+        />
         <p id="title"> 재난 참사 유족의 더 나은 삶을 위해</p>
         <p id="content1">
           재난으로 인한 갑작스러운 사별은 유족들에게 극심한 슬픔과 고통을
           야기하고,
           <br />
-          <I.BoldText2>심각한 트라우마와 스트레스</I.BoldText2>를 유발할 수 있어
+          <I.BoldText2>심각한 트라우마와 스트레스</I.BoldText2>를 유발할 수 있어{" "}
           <I.BoldText2>각별한 주의와 집중 심리 치료</I.BoldText2>가 필요합니다.
           <br />
         </p>
@@ -50,7 +149,12 @@ const Info = () => {
           돕기 위해 만들어졌습니다.
         </p>
       </I.Info2>
-      <I.Info3>
+      <I.Info3
+        id="Info3"
+        className={isVisible3 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying3(true)}
+        onMouseLeave={() => setIsPlaying3(false)}
+      >
         <img
           id="Info3Left"
           src={`${process.env.PUBLIC_URL}/img/Info3Left.png`}
@@ -92,40 +196,40 @@ const Info = () => {
           있도록 돕습니다.
         </p>
       </I.Info3>
-      <I.Info4>
+      <I.Info4
+        id="Info4"
+        className={isVisible4 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying4(true)}
+        onMouseLeave={() => setIsPlaying4(false)}
+      >
         <p id="title">재난 참사 유족을 위한 애도 공간</p>
         <I.Info4Contents>
-          <I.Info4Content>
-            <img
-              id="Img"
-              src={`${process.env.PUBLIC_URL}/img/Info4Flower.svg`}
-              alt="Img"
-            />
-            <p id="contentTitle">온라인 헌화</p>
-            <p id="content">
-              온라인 헌화로 기억하고 싶은 대상을
-              <br /> 추모하며 같은 아픔을 가진 사람들과
-              <br /> 함께 애도를 나눠요.
-            </p>
-            <p id="boldContent">슬픔을 견디도록 도와줍니다.</p>
-          </I.Info4Content>
-          <I.Info4Content>
-            <img
-              id="Img"
-              src={`${process.env.PUBLIC_URL}/img/Info4Tree.svg`}
-              alt="Img"
-            />
-            <p id="contentTitle">기억 나무</p>
-            <p id="content">
-              사진과 편지로 추억하고, 나무의 질문에
-              <br /> 답하며 하루하루 자라는 나무와 함께
-              <br /> 나의 마음을 보듬어 줘요.
-            </p>
-            <p id="boldContent">슬픔에 매몰되지 않게 도와줍니다.</p>
-          </I.Info4Content>
+          <LottieAnimation
+            src="https://lottie.host/d1171e83-87af-45ae-b476-c1ceb513f4ac/MAzcJtTi5c.json"
+            width="35vw"
+            height="60vh"
+            speed={1}
+            loop={false}
+            autoplay={true}
+            boxShadow="7px 7px 5px 0px rgba(0, 0, 0, 0.25), 5px 5px 7px 0px rgba(0, 0, 0, 0.25) inset"
+          />
+          <LottieAnimation
+            src="https://lottie.host/3e892260-79dd-4708-abc7-495438641058/iOwTe665WP.json"
+            width="35vw"
+            height="60vh"
+            speed={1}
+            loop={false}
+            autoplay={true}
+            boxShadow="7px 7px 5px 0px rgba(0, 0, 0, 0.25), 5px 5px 7px 0px rgba(0, 0, 0, 0.25) inset"
+          />
         </I.Info4Contents>
       </I.Info4>
-      <I.Info5>
+      <I.Info5
+        id="Info5"
+        className={isVisible5 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying5(true)}
+        onMouseLeave={() => setIsPlaying5(false)}
+      >
         <img
           id="Img"
           src={`${process.env.PUBLIC_URL}/img/whiteFlower.png`}
@@ -142,7 +246,12 @@ const Info = () => {
           수 있어요.
         </p>
       </I.Info5>
-      <I.InfoAdd>
+      <I.InfoAdd
+        id="InfoAdd"
+        className={isVisible6 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying6(true)}
+        onMouseLeave={() => setIsPlaying6(false)}
+      >
         <p id="title">헌화금으로 지원 센터에 기부를</p>
         <p id="content">
           온라인 헌화 시 최소 1,000원 부터 헌화금을 결제해 기부를 진행할 수
@@ -154,17 +263,28 @@ const Info = () => {
           결제 이후 뜨는 기부 증서를 공유해 따뜻함을 나눠 보세요.
         </p>
       </I.InfoAdd>
-      <I.Info6>
+      <I.Info6
+        id="Info6"
+        className={isVisible7 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying7(true)}
+        onMouseLeave={() => setIsPlaying7(false)}
+      >
         <I.Info6Content>
-          <div>
-            <p>같은 경험을 한 사람들과 함께 극복하고 싶어요</p>
-          </div>
-          <div id="Info62">
-            <p>제 마음을 표현하고 공감받는 공간이 필요해요</p>
-          </div>
-          <div>
-            <p>이제는 볼 수 없는 대상을 같이 추억하고 싶어요</p>
-          </div>
+          <img
+            id="Info61"
+            src={`${process.env.PUBLIC_URL}/img/overcome.png`}
+            alt="Info61"
+          />
+          <img
+            id="Info62"
+            src={`${process.env.PUBLIC_URL}/img/space.png`}
+            alt="Info62"
+          />
+          <img
+            id="Info61"
+            src={`${process.env.PUBLIC_URL}/img/memorytogether.png`}
+            alt="Info61"
+          />
         </I.Info6Content>
         <I.Info6Information>
           <p id="title">희망 헌화 공간 신청</p>
@@ -174,7 +294,12 @@ const Info = () => {
           </p>
         </I.Info6Information>
       </I.Info6>
-      <I.Info7>
+      <I.Info7
+        id="Info7"
+        className={isVisible8 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying8(true)}
+        onMouseLeave={() => setIsPlaying8(false)}
+      >
         <I.Info7Content>
           <p id="title">사랑하는 이를 기억하는 나무</p>
           <p id="content">
@@ -184,9 +309,8 @@ const Info = () => {
             나무와 함께 천천히 성장하며 그리운 기억을 추억할 수 있을거예요.
           </p>
         </I.Info7Content>
-
         <I.Info7Img>
-          <div>
+          <div id="imgdiv">
             <img
               id="Img"
               src={`${process.env.PUBLIC_URL}/img/Info7tree.png`}
@@ -207,10 +331,24 @@ const Info = () => {
               src={`${process.env.PUBLIC_URL}/img/Info7heart.svg`}
               alt="Heart"
             />
+            <div id="q1">
+              <p>오늘 기분은 어때요?</p>
+            </div>
+            <div id="q2">
+              <p>오늘 기억에 남는 일이 있나요?</p>
+            </div>
+            <div id="q3">
+              <p>그분과의 좋은 추억을 공유해 주세요.</p>
+            </div>
           </div>
         </I.Info7Img>
       </I.Info7>
-      <I.Info8>
+      <I.Info8
+        id="Info8"
+        className={isVisible9 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying9(true)}
+        onMouseLeave={() => setIsPlaying9(false)}
+      >
         <p id="title">나를 치유하며 성장해요</p>
         <p id="content">
           나무는 기본적으로 심리적 고통과 변화가 많이 일어나는
@@ -218,13 +356,24 @@ const Info = () => {
           <br />
           나무가 다 자라나면 원하는 꽃을 피울 수도 있어요.
         </p>
+        <div className="animation-background">
+          <LottieAnimation3
+            src="https://lottie.host/ca1b2b0f-39ab-424b-95b3-c1d3350ada94/qSQ7FizQGj.json"
+            speed={1}
+            loop={true}
+            autoplay={true}
+            width="100%"
+            height="100%"
+            zIndex="0" // z-index 설정 (배경으로 설정)
+            isPlaying={isPlaying9} // 애니메이션 재생 상태 전달
+          />
+        </div>
         <I.Info8Container>
           <img
             id="Info8Img1"
             src={`${process.env.PUBLIC_URL}/img/Info8Img1.png`}
             alt="Info8Img1"
           />
-
           <I.Info8Arrow></I.Info8Arrow>
           <img
             id="Info8Img2"
@@ -239,10 +388,15 @@ const Info = () => {
           />
         </I.Info8Container>
       </I.Info8>
-      <I.Info9>
+      <I.Info9
+        id="Info9"
+        className={isVisible10 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying10(true)}
+        onMouseLeave={() => setIsPlaying10(false)}
+      >
         <img
           id="Img"
-          src={`${process.env.PUBLIC_URL}/img/Info7tree.png`}
+          src={`${process.env.PUBLIC_URL}/img/treeIconInfo9.png`}
           alt="Img"
         />
         <p id="title">언제나 내 곁에서 머무는 나무</p>
@@ -281,7 +435,6 @@ const Info = () => {
             </I.NavBtnWrapper1>
           </I.Info93>
         </I.Info923>
-
         <p id="content">
           완전한 치유가 끝나면{" "}
           <I.BoldText9>기억 나무를 자택으로 직접 배송</I.BoldText9>받을 수
@@ -293,7 +446,12 @@ const Info = () => {
           행복을 바라며 지켜볼 거예요.
         </p>
       </I.Info9>
-      <I.Info10>
+      <I.Info10
+        id="Info10"
+        className={isVisible11 ? "animate" : ""}
+        onMouseEnter={() => setIsPlaying11(true)}
+        onMouseLeave={() => setIsPlaying11(false)}
+      >
         <I.Info10Line1></I.Info10Line1>
         <I.Info10Content>
           <img
@@ -304,7 +462,7 @@ const Info = () => {
           <p id="title">나와 너, 서로를 토닥이며</p>
           <p id="content">상실의 슬픔, 이제 혼자 견뎌내지 마세요.</p>
         </I.Info10Content>
-        <I.Info10Line1></I.Info10Line1>
+        <I.Info10Line2></I.Info10Line2>
       </I.Info10>
     </I.Info>
   );

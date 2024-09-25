@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import * as S from "../css/StyledLogin";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import * as S from "../css/StyledLogin";
 
 const Login = () => {
   const [username, setId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  useEffect(() => {
+    // 컴포넌트가 마운트되면 상단으로 스크롤
+    window.scrollTo(0, 0);
+  }, []);
   const handleLogin = async () => {
     try {
       // Make the POST request to the login endpoint
@@ -45,6 +48,14 @@ const Login = () => {
     }
   };
 
+  // Handle Enter key press
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevent the default form submission behavior
+      handleLogin(); // Call the login function
+    }
+  };
+
   return (
     <S.Body>
       <S.Container>
@@ -66,6 +77,7 @@ const Login = () => {
               placeholder="아이디"
               value={username}
               onChange={(e) => setId(e.target.value)}
+              onKeyDown={handleKeyDown} // Add the keydown handler
             />
           </S.Step1Item>
           <S.Step1Item>
@@ -76,15 +88,10 @@ const Login = () => {
               name="password"
               id="password"
               type="password"
-              placeholder="비밀번호"
-              style={{
-                width: "275px",
-                position: "relative",
-                marginLeft: "280px",
-                fontSize: "40px",
-              }}
+              placeholder="비밀번호(영어, 숫자, 특수문자 조합 12자 이상)"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={handleKeyDown} // Add the keydown handler
             />
           </S.Step1Item>
         </S.Step1Items>
