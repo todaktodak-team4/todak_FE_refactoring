@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as M from "../css/StyledNav";
 import NeedLogin from "./NeedLogin";
-
+//수정 완
 const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation(); // 현재 경로를 가져오기 위한 훅
