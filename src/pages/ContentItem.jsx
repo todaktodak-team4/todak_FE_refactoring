@@ -10,19 +10,14 @@ const ContentItem = ({
   date,
   wreathCount,
   messageCount,
-  initialStatus, // 초기 상태
   isPrivate, // private 상태 추가
 }) => {
   const navigate = useNavigate();
   const defaultImg = `${process.env.PUBLIC_URL}/img/ListContentImg.png`;
   const token = localStorage.getItem("access_token");
-
-  const storedStatus = localStorage.getItem(`status-${postId}`);
-  const [status, setStatus] = useState(
-    storedStatus || initialStatus || "unparticipated"
-  );
-
-  console.log("count:", wreathCount, "private:", isPrivate);
+  const [status, setStatus] = useState(() => {
+    return localStorage.getItem(`status-${postId}`) || "unparticipated";
+  });
 
   // 날짜 포맷팅 함수
   const formatDate = (isoDate) => {
@@ -34,42 +29,41 @@ const ContentItem = ({
     }`;
   };
 
-  // Fetch status from server if not already in localStorage
   useEffect(() => {
-    if (!storedStatus) {
-      const fetchStatus = async () => {
-        try {
-          const response = await axios.get(
-            `http://127.0.0.1:8000/memorialHall/${postId}/participate`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          const newStatus = response.data.status || "unparticipated";
-          setStatus(newStatus);
-          localStorage.setItem(`status-${postId}`, newStatus);
-        } catch (error) {
-          console.error("Error fetching status:", error);
-          if (error.response && error.response.status === 401) {
-            // Token expired or invalid, redirect to login
-            localStorage.removeItem("access_token");
-            localStorage.removeItem("refresh_token");
-            alert("토큰이 만료되었습니다. 다시 로그인해주세요.");
-            navigate("/login");
-          } else {
-            setStatus("unparticipated");
-            localStorage.setItem(`status-${postId}`, "unparticipated");
+    const fetchStatus = async () => {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/memorialHall/${postId}/participate`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
+        );
+
+        const newStatus = response.data.isParticipated
+          ? "participated"
+          : "unparticipated";
+        setStatus(newStatus);
+
+        localStorage.setItem(`status-${postId}`, newStatus);
+      } catch (error) {
+        console.error("Error fetching status:", error);
+        if (error.response && error.response.status === 401) {
+          localStorage.removeItem("access_token");
+          localStorage.removeItem("refresh_token");
+          alert("토큰이 만료되었습니다. 다시 로그인해주세요.");
+          navigate("/login");
+        } else {
+          setStatus("unparticipated");
+          localStorage.setItem(`status-${postId}`, "unparticipated");
         }
-      };
+      }
+    };
 
-      fetchStatus();
-    }
-  }, [postId, token, storedStatus, navigate]);
+    fetchStatus();
+  }, [postId, token, navigate]);
 
-  // Handle participation toggle
   const handleParticipation = async () => {
     if (status === "participated") {
       const confirmCancel = window.confirm(
@@ -94,6 +88,7 @@ const ContentItem = ({
           }
         );
         newStatus = "unparticipated";
+        window.location.reload(); //새로고침
       } else {
         await axios.post(
           `http://127.0.0.1:8000/memorialHall/${postId}/participate`,
@@ -112,7 +107,6 @@ const ContentItem = ({
     } catch (error) {
       console.error("Error updating participation status:", error);
       if (error.response && error.response.status === 401) {
-        // Token expired or invalid, redirect to login
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
         alert("토큰이 만료되었습니다. 다시 로그인해주세요.");

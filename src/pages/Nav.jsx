@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as M from "../css/StyledNav";
+import NeedLogin from "./NeedLogin";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -9,7 +10,35 @@ const Nav = () => {
   const [token, setToken] = useState(localStorage.getItem("access_token")); // localStorage에서 토큰 가져오기
   const [userId, setUserId] = useState(null); // 추가: 사용자 ID 상태
   const [showLoginModal, setShowLoginModal] = useState(false); // 로그인 모달 창 보이기 여부 상태
+  useEffect(() => {
+    // 토큰 유효성 검사
+    const validateToken = async () => {
+      if (token) {
+        try {
+          const response = await fetch("http://127.0.0.1:8000/token/verify/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ token }),
+          });
 
+          if (response.status === 401) {
+            // 토큰이 유효하지 않으면 처리
+            localStorage.removeItem("access_token");
+            setToken(null);
+            setShowLoginModal(true);
+          }
+        } catch (error) {
+          console.error("Token validation failed:", error);
+          setShowLoginModal(true);
+        }
+      }
+    };
+
+    validateToken();
+  }, [token]);
   const goToRemeberTree = async () => {
     if (token) {
       try {
@@ -63,16 +92,30 @@ const Nav = () => {
       setShowLoginModal(true); // 토큰이 없는 경우 모달 창 보이기
     }
   };
-
+  const goToMemorialHall = () => {
+    if (token) {
+      navigate("/memorialHallList");
+    } else {
+      setShowLoginModal(true); // 토큰이 없는 경우 모달 창 보이기
+    }
+  };
+  const goToMemorialHallSignup = () => {
+    if (token) {
+      navigate("/memorialHallSignup");
+    } else {
+      setShowLoginModal(true); // 토큰이 없는 경우 모달 창 보이기
+    }
+  };
   return (
     <M.Nav>
       <M.Navbar>
+        {showLoginModal && <NeedLogin />}
         <M.NavItem isActive={location.pathname === "/"}>
           <a href="/">HOME</a>
           <hr />
         </M.NavItem>
         <M.NavItem isActive={location.pathname === "/memorialHallList"}>
-          <a href="/memorialHallList">온라인 헌화</a>
+          <a onClick={goToMemorialHall}>온라인 헌화</a>
           <hr />
         </M.NavItem>
         <M.NavItem isActive={location.pathname === "/rememberTree"}>
@@ -80,7 +123,7 @@ const Nav = () => {
           <hr />
         </M.NavItem>
         <M.NavItem isActive={location.pathname === "/memorialHallSignup"}>
-          <a href="/memorialHallSignup">헌화 공간 신청</a>
+          <a onClick={goToMemorialHallSignup}>헌화 공간 신청</a>
           <hr />
         </M.NavItem>
       </M.Navbar>

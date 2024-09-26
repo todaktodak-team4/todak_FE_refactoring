@@ -126,7 +126,6 @@ const MemorialHallList = () => {
                       public={item.public}
                       wreathCount={item.wreathCount}
                       messageCount={item.messageCount}
-                      status={item.status}
                       token={item.token}
                     />
                   ))}
@@ -145,7 +144,6 @@ const MemorialHallList = () => {
                       public={item.public}
                       wreathCount={item.wreathCount}
                       messageCount={item.messageCount}
-                      status={item.status}
                       token={item.token}
                     />
                   ))}
