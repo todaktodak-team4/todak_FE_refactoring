@@ -234,10 +234,12 @@ const MemorialHall = () => {
         <H.BannerBottom>
           <H.BannerContent>
             지금까지의 헌화 수량
-            <p id="count">{post && post.wreathCount} 개</p>
+            <p id="count" style={{fontFamily:"NanumBuJangNimNunCiCe"
+            }}>{post && post.wreathCount} 개</p>
           </H.BannerContent>
           <H.BannerContent>
-            보내주신 추모 글<p id="count">{post && post.messageCount} 개</p>
+            보내주신 추모 글<p id="count" style={{fontFamily:"NanumBuJangNimNunCiCe"
+            }}>{post && post.messageCount} 개</p>
           </H.BannerContent>
         </H.BannerBottom>
 

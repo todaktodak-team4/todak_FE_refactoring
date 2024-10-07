@@ -13,7 +13,8 @@ function Mypage() {
   const [userId, setUserId] = useState(null);
   const [todayAnswers, setTodayAnswers] = useState(null);
   const [treeData, setTreeData] = useState(null);
-  const baseUrl = "http://3.38.125.151";
+  // const baseUrl = "http://3.38.125.151";
+  const baseUrl = "http://127.0.0.1:8000";
 
   // Set the profile image URL conditionally
   const imageUrl = image
@@ -231,7 +232,7 @@ function Mypage() {
         </div>
         <div className={styles.stateProfileFlex}>
           <div className={styles.userDetail}>
-            <div className={styles.user}> {username} 님</div>
+            <div className={styles.user}> {username},</div>
             <div className={styles.days}>함께한지 {togetherDate}일째</div>
             <div className={styles.answerState}>{getAnswerStateMessage()}</div>
           </div>

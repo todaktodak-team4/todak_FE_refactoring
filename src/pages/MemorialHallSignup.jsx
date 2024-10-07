@@ -177,7 +177,7 @@ const MemorialHallSignup = () => {
                   공개
                 </label>
 
-                <label htmlFor="radio2">
+               <label htmlFor="radio2">
                   <input
                     type="radio"
                     id="radio2"
@@ -186,8 +186,9 @@ const MemorialHallSignup = () => {
                     checked={visibility === "private"}
                     onChange={onChange}
                   />
-                  비공개
-                </label>
+                  비공개(승인필요 - 선택불가)
+                </label> 
+
               </S.Checkbox>
             </S.SignupItem>
             <S.SignupItem>

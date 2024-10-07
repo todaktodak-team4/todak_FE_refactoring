@@ -411,7 +411,7 @@ export const Info4 = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 40rem;
+  height: 100vh;
   background: url(${process.env.PUBLIC_URL}/img/Info4Background.png);
   background-size: cover;
   background-repeat: no-repeat;

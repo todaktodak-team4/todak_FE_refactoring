@@ -113,6 +113,13 @@ const Main = () => {
     }
   };
 
+const goToMemorialSignup = () => {
+  if (token) {
+    navigate("/memorialHallSignup");
+  } else {
+    setShowLoginModal(true); // 토큰이 없는 경우 모달 창 보이기
+  }
+};
   return (
     <M.Body>
       <M.Container>
@@ -131,18 +138,18 @@ const Main = () => {
         <M.Content>
           <M.NavBtns>
             <M.NavBtnWrapper1>
-              <M.NavBtnWrapper2>
-                <a onClick={goToMemorialHall}>온라인 헌화</a>
+              <M.NavBtnWrapper2 onClick={goToMemorialHall}>
+                <a>온라인 헌화</a>
               </M.NavBtnWrapper2>
             </M.NavBtnWrapper1>
             <M.NavBtnWrapper1>
-              <M.NavBtnWrapper2>
-                <a onClick={goToRemeberTree}>기억 나무</a>
+              <M.NavBtnWrapper2 onClick={goToRemeberTree}>
+                <a>기억 나무</a>
               </M.NavBtnWrapper2>
             </M.NavBtnWrapper1>
             <M.NavBtnWrapper1>
-              <M.NavBtnWrapper2>
-                <a href="/memorialHallSignup">
+              <M.NavBtnWrapper2 onClick={goToMemorialSignup}>
+                <a>
                   헌화 공간
                   <br />
                   신청

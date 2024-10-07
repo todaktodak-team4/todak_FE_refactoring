@@ -97,16 +97,9 @@ const Info = () => {
       </I.Info1>
       <I.Info2
         id="Info2"
-        className={isVisible2 ? "animate" : ""}
-        onMouseEnter={() => setIsPlaying2(true)}
-        onMouseLeave={() => setIsPlaying2(false)}
+        
       >
-        <LottieAnimation2
-          src="https://lottie.host/2a698210-56a2-4a65-a464-d01a762173a1/xvBlkfKYyz.json"
-          speed={2}
-          loop={false}
-          autoplay={true}
-        />
+        
         <img
           id="Info2Img1"
           src={`${process.env.PUBLIC_URL}/img/11left.svg`}
@@ -208,7 +201,7 @@ const Info = () => {
             src="https://lottie.host/d1171e83-87af-45ae-b476-c1ceb513f4ac/MAzcJtTi5c.json"
             width="35vw"
             height="60vh"
-            speed={1}
+            speed={100000000000000000000}
             loop={false}
             autoplay={true}
             boxShadow="7px 7px 5px 0px rgba(0, 0, 0, 0.25), 5px 5px 7px 0px rgba(0, 0, 0, 0.25) inset"
@@ -217,7 +210,7 @@ const Info = () => {
             src="https://lottie.host/3e892260-79dd-4708-abc7-495438641058/iOwTe665WP.json"
             width="35vw"
             height="60vh"
-            speed={1}
+            speed={100000000000000000000}
             loop={false}
             autoplay={true}
             boxShadow="7px 7px 5px 0px rgba(0, 0, 0, 0.25), 5px 5px 7px 0px rgba(0, 0, 0, 0.25) inset"
