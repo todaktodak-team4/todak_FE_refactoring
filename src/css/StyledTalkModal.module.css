@@ -11,6 +11,15 @@
 .fade-in {
   animation: fadeIn 1s ease-in-out;
 }
+/* 스크롤바 숨기기 */
+.element {
+  overflow: hidden; /* 스크롤바를 숨김 */
+}
+
+/* 웹킷 기반 브라우저에서 스크롤바를 완전히 숨김 */
+.element::-webkit-scrollbar {
+  display: none; /* 스크롤바 숨기기 */
+}
 
 .container {
   flex-direction: column;
