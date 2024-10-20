@@ -2,9 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import styles from "../css/StyledTalkModal.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function TalkModal({ onClose, myname }) {
+function TalkModal({ onClose, myname, messages, setMessages }) {
+  const handleSendMessage = (message) => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { sender: myname, text: message },
+    ]);
+  };
   const [getAnswer, setAnswer] = useState("");
-  const [messages, setMessages] = useState([]); // 메시지 리스트를 저장
   const [toastMessage, setToastMessage] = useState("");
   const [toastTimer, setToastTimer] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);

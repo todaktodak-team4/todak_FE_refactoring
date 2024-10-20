@@ -9,6 +9,7 @@ import WriteLetter from "../pages/WriteLetter";
 import ShowLetter from "../pages/ShowLetter";
 
 function RememberTree() {
+  const [messages, setMessages] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTalkModalOpen, setIsTalkModalOpen] = useState(false);
   const [isPostBoxHovered, setIsPostBoxHovered] = useState(false);
@@ -323,7 +324,12 @@ function RememberTree() {
       </div>
       {isModalOpen && <HelpModal onClose={toggleModal} />}
       {isTalkModalOpen && (
-        <TalkModal onClose={toggleTalkModal} myname={username} />
+        <TalkModal
+          onClose={toggleTalkModal}
+          myname={username}
+          messages={messages}
+          setMessages={setMessages}
+        />
       )}
       {isUploadImgOpen && (
         <UploadImg
